@@ -7,10 +7,10 @@ using System;
 
 namespace API.Helpers
 {
-    public class ProductUrlctorResolver : IValueResolver<Product, ProductToReturnDto, string>
+    public class ProductUrlResolver : IValueResolver<Product, ProductToReturnDto, string>
     {
         private readonly IConfiguration _config;
-        public ProductUrlctorResolver(IConfiguration config)
+        public ProductUrlResolver(IConfiguration config)
         {
             _config = config;
         }
