@@ -3,6 +3,7 @@ using API.Helpers;
 using API.Middleware;
 using AutoMapper;
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,8 +31,13 @@ namespace API
                 (x => 
                 x.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddApplicationServices();
+            services.AddDbContext<AppIdentityDbContext>(x =>
+            {
+                x.UseSqlServer(_configuration.GetConnectionString("IdentityConnection"));
+            });
 
+            services.AddApplicationServices();
+            services.AddIdentityServices(); 
             services.AddSwaggerDocumentation();
 
             services.AddCors(opt =>
