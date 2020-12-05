@@ -18,7 +18,6 @@ import { HomeModule } from './home/home.module';
     NgbModule,
     HttpClientModule,
     CoreModule,
-    ShopModule,
     AppRoutingModule,
     HomeModule
   ],
