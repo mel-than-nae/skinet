@@ -48,6 +48,10 @@ export class ShopService {
     return this.http.get<IBrand[]>(this.apiUrl + 'products/brands');
   }
 
+  getProduct(id: number){
+    return this.http.get<IProduct>(this.apiUrl + 'products/' + id);
+  }
+
   getTypes() {
     return this.http.get<IType[]>(this.apiUrl + 'products/types');
   }
