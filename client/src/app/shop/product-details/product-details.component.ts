@@ -13,6 +13,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    debugger;
     this.loadProduct();
   }
 
@@ -20,6 +21,7 @@ export class ProductDetailsComponent implements OnInit {
   loadProduct(){
     this.shopService.getProduct(+this.activatedRoute.snapshot.paramMap.get('id')).subscribe(product => {
       this.product = product;
+      debugger;
     }, error => {
       console.log(error);
     });
