@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
 namespace API
 {
@@ -34,6 +35,12 @@ namespace API
             services.AddDbContext<AppIdentityDbContext>(x =>
             {
                 x.UseSqlServer(_configuration.GetConnectionString("IdentityConnection"));
+            });
+
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
+                var config = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(config);
             });
 
             services.AddApplicationServices();
