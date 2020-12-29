@@ -7,8 +7,10 @@ import { CoreModule } from './core/core.module';
 import { ShopModule } from './shop/shop.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
+import { NgxSpinnerModule} from 'ngx-spinner';
 import { ErrorInterceptor } from './core/interceptors/error-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptors';
 
 
 @NgModule({
@@ -22,9 +24,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CoreModule,
     AppRoutingModule,
     HomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
   bootstrap: [AppComponent],
-  providers:  [{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}]
+  providers:  [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}]
 })
 export class AppModule { }
